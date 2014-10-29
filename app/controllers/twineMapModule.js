@@ -88,6 +88,8 @@
 
 			// Assign to filered data
 			$scope.markerFilteredData = $scope.markerData;
+			// Update table
+			$scope.tableParams.reload();
 
 			// Initial filter
 			if ( $scope.search && $scope.search.length > 0 ) {
@@ -112,7 +114,7 @@
 			page: 1, // show first page
 			count: 10, // count per page
 			sorting: {
-				countryname: 'desc' // initial sorting
+				countryname: 'asc' // initial sorting
 			}
 		}, {
 			total: 0, // length of data
@@ -143,7 +145,7 @@
 			$location.path('/search=' + $scope.search);
 			// Update markers
 			$scope.updateMarkers();	
-			// Update markers
+			// Update table
 			$scope.tableParams.reload();
 		};
 
