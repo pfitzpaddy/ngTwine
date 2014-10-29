@@ -23,7 +23,7 @@
 
 ### Implementation
 
- - The __twineMapModule__ ("ngTable/ap/controllers/twineMapModule.js") contains the __twineMapCtrl__ controller that manages the leaflet-directive config as well as the locations table definition.
+ - The __twineMapModule__ ("app/controllers/twineMapModule.js") contains the __twineMapCtrl__ controller that manages the leaflet-directive config as well as the locations table definition.
  
  - Both the map and table are linked by __$scope.markerFilteredData__ (GL4 & GL5 data) within the __twineMapCtrl__ controller.
   
