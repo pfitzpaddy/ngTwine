@@ -1,0 +1,9 @@
+{
+  "name": "balthazar-web-server",
+  "version": "0.0.1",
+  "description": "Agoda Experiment Backoffice - Nodejs dependencies",
+  "devDependencies": {
+    "grunt": "~0.4.2",
+    "grunt-web-server": "~1.2.3"
+  }
+}

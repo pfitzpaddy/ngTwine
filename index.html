@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<head>
+  
+  <title>Twine</title>
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css"><link/>
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css"><link/>
+  <link rel="stylesheet" href="bower_components/leaflet/dist/leaflet.css"><link/>
+
+  <style>
+    th {
+      cursor: pointer;
+    }
+    .siv-header {
+      background: #73d7e9;
+      height: 60px;
+      float: left;
+      width: 100%;
+    }
+    .leaflet-control-layers.leaflet-control {
+      display: none;
+    } 
+  </style>
+
+</head>
+<body  ng-app="twineApp">
+
+  <!-- header -->
+  <div class="siv-header" id="siv-head-wrap"></div>
+
+  <!-- twine map controller -->
+  <div ng-controller="twineMapCtrl">
+
+    <div class="col-sm-8 col-md-8 col-lg-8" style="padding: 0">
+      <leaflet defaults="defaults" center="center" markers="markers" layers="layers" event-broadcast="events" width="100%" height="640px"></leaflet>
+    </div>
+    <!-- end twine map -->
+
+    <!-- Table -->
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <!-- Search form -->
+      <div class="input-group" style="padding:10px">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+        <input ng-model='search' type="text" class="form-control" placeholder="Search...">
+      </div>
+      <!-- Ng-repeat table -->
+      <table ng-cloak ng-table="tableParams" class='table table-striped full'>
+          <tr ng-repeat="m in $data | filter:search" ng-click="zoomToLocation(m)" style="cursor:pointer;">
+              <td data-title="'ID'" sortable="'uuid'" width="40%">{{m.uuid}}</td>
+              <td data-title="'Country'" sortable="'countryname'">{{m.countryname}}</td>
+              <td data-title="'Name'" sortable="'name'">{{m.name}}</td>
+          </tr>
+        </table>
+    </div>
+    <!-- end table -->
+
+  </div>
+  <!-- end twine app controller -->
+
+  <script src="bower_components/angular/angular.min.js"></script>
+  <script src="bower_components/ng-table/ng-table.min.js"></script>
+  <script src="bower_components/angular-leaflet-directive/dist/angular-leaflet-directive.min.js"></script>
+  <script src="bower_components/leaflet/dist/leaflet.js"></script>
+  <script src="app/app.js"></script>
+  <script src="app/controllers/twineMapModule.js"></script>
+</body>
+</html>
