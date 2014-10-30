@@ -67,6 +67,14 @@
 					&& location.geometry.coordinates[1] != 0
 					&& location.properties.countryname ) {
 
+					// Format popup string
+					var type="";
+					var iconType = location.properties.map_icon.replace(".png","").split("-");
+					angular.forEach(iconType, function(t, j) { type += t.charAt(0).toUpperCase() + t.slice(1) + " "; });
+					var popup = '<div align="left"><b>' + location.properties.countryname + '</b>';
+						popup += '<br/>Location: ' + location.properties.name;
+						popup += '<br/>Type: ' + type.slice(0,-1) + '</div>';					
+
 					// Push onto array of markers
 					this.push({
 						layer: 'locations',
@@ -76,7 +84,7 @@
 						geolevel: location.properties.geolevel,
 						lng: location.geometry.coordinates[0],
 						lat: location.geometry.coordinates[1],
-						message: $scope.formatType(location.properties),
+						message: popup,
 						focus: false,						
 						icon: { 
 							iconSize: [18, 18],
@@ -177,25 +185,6 @@
 
 			// Return bounds
 			return new L.LatLngBounds(latlngs);
-		};	
-
-		// Format popup for location
-		$scope.formatType = function(location) {
-			
-			// Type based on map icon
-			var type="";
-			var iconType = location.map_icon.replace(".png","").split("-");
-			// Format string
-			angular.forEach(iconType, function(t, j) {
-				type += t.charAt(0).toUpperCase() + t.slice(1) + " ";
-			});
-			// Create popup
-			var popup = '<div align="left"><b>' + location.countryname + '</b>';
-				popup += '<br/>Location: ' + location.name;
-				popup += '<br/>Type: ' + type.slice(0,-1) + '</div>';
-
-			// return formatted popup
-			return popup
 		};
 
 	}]);    
